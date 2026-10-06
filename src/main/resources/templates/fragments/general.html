@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Navegación de administración</title>
+</head>
+<body>
+
+    <div th:fragment="menu">
+        <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#102a43]">Panel de control</p>
+                <h2 class="mt-1 font-serif text-2xl text-slate-800">Herramientas de la tienda</h2>
+            </div>
+            <a href="../" class="inline-flex w-fit items-center rounded-md border border-[#d8aa62] px-3 py-2 text-sm font-medium text-[#102a43] transition-colors hover:bg-[#102a43] hover:text-[#e8c98e] focus:outline-none focus:ring-2 focus:ring-[#d8aa62] focus:ring-offset-2">
+                Volver a la parte pública
+            </a>
+        </div>
+        <nav class="mt-5 grid gap-3 sm:grid-cols-2" aria-label="Secciones de administración">
+            <a href="gestionarRelojes" class="rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-[#102a43] transition-colors hover:border-[#d8aa62] hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#d8aa62] focus:ring-offset-2">
+                Gestionar relojes
+            </a>
+            <a href="gestionarUsuarios" class="rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-[#102a43] transition-colors hover:border-[#d8aa62] hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#d8aa62] focus:ring-offset-2">
+                Gestionar usuarios
+            </a>
+            <a href="gestionarCategorias" class="rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-[#102a43] transition-colors hover:border-[#d8aa62] hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#d8aa62] focus:ring-offset-2">
+                Gestionar categorías
+            </a>
+            <a href="gestionarPedidos" class="rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-[#102a43] transition-colors hover:border-[#d8aa62] hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#d8aa62] focus:ring-offset-2">
+                Gestionar pedidos
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de relojes</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-slate-100 p-4 text-slate-800 sm:p-8">
+
+    <div class="mx-auto mb-3 flex max-w-5xl justify-end">
+        <a href="admin/inicioAdmin" class="rounded-md border border-[#d8aa62] px-3 py-2 text-sm font-medium text-[#102a43] transition-colors hover:bg-[#102a43] hover:text-[#e8c98e] focus:outline-none focus:ring-2 focus:ring-[#d8aa62] focus:ring-offset-2">
+            Acceso a administración
+        </a>
+    </div>
+
+    <!-- La parte pública será una SPA Single Page Application
+    El javascript de esta única página gestionará
+    lo que user necesite -->
+
+    <nav class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-3 rounded-lg bg-[#102a43] px-5 py-4 shadow-sm" aria-label="Navegación principal">
+        <a href="#" id="relojes" class="mr-auto rounded-md px-2 py-1 font-serif text-lg font-semibold text-[#e8c98e] transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#e8c98e] focus:ring-offset-2 focus:ring-offset-[#102a43]">Relojes</a>
+        <a href="#" id="registrarme" class="text-sm text-slate-200 transition-colors hover:text-[#e8c98e] focus:outline-none focus:ring-2 focus:ring-[#e8c98e]">Registrarme</a>
+        <a href="#" id="identificarme" class="text-sm text-slate-200 transition-colors hover:text-[#e8c98e] focus:outline-none focus:ring-2 focus:ring-[#e8c98e]">Identificarme</a>
+        <a href="#" id="carrito" class="text-sm text-slate-200 transition-colors hover:text-[#e8c98e] focus:outline-none focus:ring-2 focus:ring-[#e8c98e]">Carrito</a>
+        <a href="#" id="pedidos" class="text-sm text-slate-200 transition-colors hover:text-[#e8c98e] focus:outline-none focus:ring-2 focus:ring-[#e8c98e]">Mis pedidos</a>
+        <a href="#" id="mis_datos" class="text-sm text-slate-200 transition-colors hover:text-[#e8c98e] focus:outline-none focus:ring-2 focus:ring-[#e8c98e]">Mis datos</a>
+        <a href="#" id="cerrar_sesion" class="text-sm text-slate-400 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-[#e8c98e]">Cerrar sesión</a>
+    </nav>
+
+    <div id="contenedor" class="mx-auto mt-6 min-h-56 max-w-5xl rounded-lg border border-dashed border-slate-300 bg-white p-6 shadow-sm"></div>
+
+    <script src="librerias_js/jquery.js"></script>
+
+    <script src="librerias_js/mustache.js"></script>
+
+
+    <script>
+
+        // ----- Parte de descarga de plantillas HTML
+
+        $.get("plantillas_html/listado_productos.html").done(function(res){
+            plantilla_productos= res
+        })
+
+        $.get("plantillas_html/detalles_producto.html").done(function (res) {
+            plantilla_detalles_producto = res
+        })
+
+        
+        // ----- Parte de atención a enlaces
+
+        $("#relojes").click(
+            function (event) {
+                event.preventDefault()
+                mostrar_relojes()
+            }
+        )// end relojes
+
+        function mostrar_relojes () {
+
+            $.getJSON("restRelojes/listar").done(
+                function (json) {
+                    console.log(json)
+
+                    resultadoMustache = Mustache.render(plantilla_productos, json)
+                    $("#contenedor").html(resultadoMustache)
+                }
+            )
+
+        }//end mostrar_relojes
+
+        function mostrar_detalles(id) {
+            //alert("Mostrar detalles del producto de id: " + id)
+            $.getJSON("restRelojes/obtener-reloj",
+                {
+                    id : id
+                }
+            ).done(
+                function (json){
+                    console.log(json)
+
+                    resultadoHTML = Mustache.render(plantilla_detalles_producto, json)
+                    $("#contenedor").html(resultadoHTML)
+
+                }
+            )// End done
+
+        }//end function
+
+        //por defecto cuando se acceda a la web
+        // que muestre los relojes de la tiena:
+        mostrar_relojes()
+
+        $("#registrarme").click(
+            function(){
+                alert("Mostrar formulario de registro")
+            }
+        )// end registrarme
+
+        $("#identificarme").click(
+            function(){
+                alert("Mostrar formulario de identificación")
+            }
+        )// end identificarme
+
+        $("#carrito").click(
+            function(){
+                alert("Mostrar carrito de compra")
+            }
+        )// end carrito
+
+        $("#pedidos").click(
+            function(){
+                alert("Mostrar mis pedidos")
+            }
+        )// end pedidos
+
+        $("#mis_datos").click(
+            function(){
+                alert("Mostrar mis datos")
+            }
+        )// end mis_datos
+
+        $("#cerrar_sesion").click(
+            function(){
+                alert("Cerrar sesión")
+            }
+        )// end cerrar_sesion
+
+    </script>
+
+
+</body>
+</html>

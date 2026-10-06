@@ -1,0 +1,42 @@
+<!-- Ficha de detalle renderizada con Mustache. -->
+<article class="overflow-hidden rounded-md border border-slate-200 border-t-2 border-t-[#d8aa62] bg-white shadow-sm">
+    <div class="grid gap-6 p-4 sm:grid-cols-[minmax(220px,0.85fr)_1.15fr] sm:p-6">
+        <div class="flex min-h-64 items-center justify-center rounded-md border border-slate-200 bg-slate-50 p-4 sm:min-h-80">
+            <img src="mostrar_imagen?id={{id}}" alt="{{marca}} {{modelo}}" class="max-h-80 w-full object-contain">
+        </div>
+
+        <div class="flex flex-col">
+            <p class="text-xs font-semibold uppercase tracking-wide text-[#d8aa62]">{{marca}}</p>
+            <h1 class="mt-1 font-serif text-3xl text-[#102a43]">{{modelo}}</h1>
+
+            <p class="mt-5 border-b border-slate-100 pb-5 text-3xl font-semibold text-[#102a43]">{{precio}} €</p>
+
+            <dl class="mt-5 grid grid-cols-2 gap-4">
+                <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">Movimiento</dt>
+                    <dd class="mt-1 text-sm font-medium text-slate-800">{{tipoMovimiento}}</dd>
+                </div>
+                <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">Resistencia al agua</dt>
+                    <dd class="mt-1 text-sm font-medium text-slate-800">{{resistenciaAgua}} atm</dd>
+                </div>
+                <div>
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">Género</dt>
+                    <dd class="mt-1 text-sm font-medium text-slate-800">{{genero}}</dd>
+                </div>
+            </dl>
+
+            <div class="mt-auto flex flex-wrap items-end gap-3 pt-8">
+                <div>
+                    <label for="cantidad_{{id}}" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">Cantidad</label>
+                    <input type="number" id="cantidad_{{id}}" value="1" min="1" max="{{stock}}"
+                           class="w-20 rounded-md border border-slate-300 bg-white px-2 py-2 text-center text-sm text-slate-800 shadow-sm focus:border-[#d8aa62] focus:outline-none focus:ring-2 focus:ring-[#d8aa62]/30">
+                </div>
+                <a href="#" onclick="alert('Agregar ' + $('#cantidad_{{id}}').val() + ' unidad(es) al carrito'); return false;"
+                   class="inline-flex items-center rounded-md border border-[#d8aa62] bg-[#102a43] px-4 py-2 text-sm font-medium text-[#e8c98e] transition-colors hover:bg-[#1d3d5d] focus:outline-none focus:ring-2 focus:ring-[#d8aa62] focus:ring-offset-2">
+                    Agregar al carrito
+                </a>
+            </div>
+        </div>
+    </div>
+</article>
